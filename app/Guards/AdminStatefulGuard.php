@@ -2,8 +2,6 @@
 
 namespace App\Guards;
 
-
-
 interface AdminStatefulGuard extends Guard
 {
     /**

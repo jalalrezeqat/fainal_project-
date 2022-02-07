@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'admin',
+        'guard' => 'web',
         'passwords' => 'users',
     ],
 
@@ -31,7 +31,7 @@ return [
     | users are actually retrieved out of your database or other storage
     | mechanisms used by this application to persist your user's data.
     |
-    | Supported: "session"
+    | Supported: "session", "token"
     |
     */
 
@@ -40,11 +40,15 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-    ],
-    'guards' => [
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
+        ],
+
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+            'hash' => false,
         ],
     ],
 
@@ -103,7 +107,6 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-
         'admins' => [
             'provider' => 'admins',
             'table' => 'password_resets',
